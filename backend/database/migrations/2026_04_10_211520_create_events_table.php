@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('lieu');
             $table->integer('capacite_max');
             $table->decimal('prix', 10, 2)->default(0.00);
-            $table->string('image_url')->nullable();
+            $table->string('image_principale')->nullable();
+            $table->json('autres_images')->nullable();
             $table->enum('statut', ['brouillon', 'publie', 'annule', 'termine'])->default('brouillon');
             
             // Clés étrangères
