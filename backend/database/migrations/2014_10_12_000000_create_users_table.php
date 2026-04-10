@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+       Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nom_complet');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('mot_de_passe'); // Laravel utilise 'password' par défaut, mais gardons ton nom
+            $table->enum('role', ['participant', 'organisateur', 'admin'])->default('participant');
+            $table->string('langue_choisie', 10)->default('fr');
+            $table->enum('theme_choisi', ['light', 'dark'])->default('light');
             $table->timestamps();
         });
     }
